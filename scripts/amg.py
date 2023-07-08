@@ -5,6 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 
 import cv2  # type: ignore
+import segment_anything
 
 from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
 
@@ -24,14 +25,20 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     "--input",
     type=str,
-    required=True,
+    required=False,
+    default=r'../inputImages',
+    #required=True,
+    #Zoe Loo更改于2023/7/7
     help="Path to either a single input image or folder of images.",
 )
 
 parser.add_argument(
     "--output",
     type=str,
-    required=True,
+    required=False,
+    default=r'../outputImages',
+    #required=True,
+    #Zoe Loo更改于2023/7/7
     help=(
         "Path to the directory where masks will be output. Output will be either a folder "
         "of PNGs per image or a single json with COCO-style masks."
@@ -41,14 +48,20 @@ parser.add_argument(
 parser.add_argument(
     "--model-type",
     type=str,
-    required=True,
+    required=False,
+    default='vit_h',
+    #required=True,
+    #Zoe Loo更改于2023/7/7
     help="The type of model to load, in ['default', 'vit_h', 'vit_l', 'vit_b']",
 )
 
 parser.add_argument(
     "--checkpoint",
     type=str,
-    required=True,
+    required=False,
+    default=r'../sam_vit_h_4b8939.pth',
+    #required=True,
+    #Zoe Loo更改于2023/7/7
     help="The path to the SAM checkpoint to use for mask generation.",
 )
 
